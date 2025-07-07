@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Links | Sam Altman</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .active {
+            color: var(--secondary-color);
+        }
+        
+        .active::after {
+            width: 100%;
+            background-color: var(--secondary-color);
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .links-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .links-category {
+            margin-bottom: 2rem;
+        }
+        
+        .links-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .links-list {
+            list-style: none;
+        }
+        
+        .links-list li {
+            margin-bottom: 1rem;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        
+        .link-item:hover {
+            background-color: #f5f5f5;
+            border-color: #ddd;
+            transform: translateX(5px);
+        }
+        
+        .link-icon {
+            margin-right: 1rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .stats-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .stats-title {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .footer-links li a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: var(--transition);
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .footer-links li:first-child {
+                margin-left: 0;
+            }
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Sam Altman</a>
+                <button class="nav-toggle" id="navToggle">☰</button>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="early-life.html">Early Life</a></li>
+                        <li><a href="y-combinator.html">Y Combinator</a></li>
+                        <li><a href="openai.html">OpenAI</a></li>
+                        <li><a href="ventures.html">Other Ventures</a></li>
+                        <li><a href="impact.html">Impact & Vision</a></li>
+                        <li><a href="achievements.html">Achievements</a></li>
+                        <li><a href="contact.html" class="active">Contact & Links</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Contact & Links</h1>
+            
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h2>Get in Touch</h2>
+                    <p>Have a question or want to connect? Fill out the form below.</p>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="links-section">
+                    <div class="links-category">
+                        <h3>Professional Profiles</h3>
+                        <ul class="links-list">
+                            <li>
+                                <a href="https://twitter.com/sama" class="link-item" target="_blank">
+                                    <span class="link-icon">T</span>
+                                    Twitter (@sama)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/altmansam/" class="link-item" target="_blank">
+                                    <span class="link-icon">L</span>
+                                    LinkedIn
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.samaltman.com/" class="link-item" target="_blank">
+                                    <span class="link-icon">B</span>
+                                    Personal Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="links-category">
+                        <h3>Organizations</h3>
+                        <ul class="links-list">
+                            <li>
+                                <a href="https://openai.com/" class="link-item" target="_blank">
+                                    <span class="link-icon">O</span>
+                                    OpenAI
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.ycombinator.com/" class="link-item" target="_blank">
+                                    <span class="link-icon">Y</span>
+                                    Y Combinator
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.helionenergy.com/" class="link-item" target="_blank">
+                                    <span class="link-icon">H</span>
+                                    Helion Energy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://worldcoin.org/" class="link-item" target="_blank">
+                                    <span class="link-icon">W</span>
+                                    Worldcoin
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://twitter.com/sama" class="social-link" target="_blank">T</a>
+                        <a href="https://www.linkedin.com/in/altmansam/" class="social-link" target="_blank">L</a>
+                        <a href="https://github.com/sama" class="social-link" target="_blank">G</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h2 class="stats-title">Sam Altman's Impact by Numbers</h2>
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-value" id="companiesValue">0</div>
+                        <div class="stat-label">Companies Funded at YC</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="valuation">$0B</div>
+                        <div class="stat-label">OpenAI Valuation</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="investments">0</div>
+                        <div class="stat-label">Personal Investments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="footer-logo">Sam Altman</a>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="early-life.html">Early Life</a></li>
+                    <li><a href="y-combinator.html">Y Combinator</a></li>
+                    <li><a href="openai.html">OpenAI</a></li>
+                    <li><a href="ventures.html">Other Ventures</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sam Altman Biography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a server
+            console.log({ name, email, subject, message });
+            
+            // Show success message
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        // Animated Stats Counter
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = Math.floor(progress * (end - start) + start);
+                
+                if (id === 'valuation') {
+                    obj.innerHTML = `$${value}B`;
+                } else {
+                    obj.innerHTML = value;
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Intersection Observer for stats animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue('companiesValue', 0, 2000, 2000);
+                    animateValue('valuation', 0, 80, 2000);
+                    animateValue('investments', 0, 150, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.querySelector('.stats-container'));
+        
+        // Chart.js-like implementation for impact chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('impactChart');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas dimensions
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = 300;
+            
+            // Data for the chart
+            const data = {
+                labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                datasets: [
+                    {
+                        label: 'OpenAI Growth',
+                        data: [0, 5, 10, 15, 20, 30, 40, 50, 65, 80],
+                        color: '#3498db'
+                    },
+                    {
+                        label: 'YC Companies',
+                        data: [500, 700, 900, 1100, 1300, 1500, 1700, 1800, 1900, 2000],
+                        color: '#e74c3c'
+                    }
+                ]
+            };
+            
+            // Draw chart
+            function drawChart() {
+                const width = canvas.width;
+                const height = canvas.height;
+                const padding = 40;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, width, height);
+                
+                // Draw title
+                ctx.font = '16px Arial';
+                ctx.fillStyle = '#2c3e50';
+                ctx.textAlign = 'center';
+                ctx.fillText('Growth Over Time', width / 2, 20);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(padding, padding);
+                ctx.lineTo(padding, height - padding);
+                ctx.lineTo(width - padding, height - padding);
+                ctx.strokeStyle = '#333';
+                ctx.stroke();
+                
+                // Draw x-axis labels
+                ctx.font = '12px Arial';
+                ctx.fillStyle = '#333';
+                ctx.textAlign = 'center';
+                
+                const xStep = (width - 2 * padding) / (data.labels.length - 1);
+                data.labels.forEach((label, i) => {
+                    const x = padding + i * xStep;
+                    ctx.fillText(label, x, height - padding + 20);
+                });
+                
+                // Draw y-axis labels
+                ctx.textAlign = 'right';
+                const maxValue = Math.max(...data.datasets[1].data);
+                const yStep = (height - 2 * padding) / 5;
+                
+                for (let i = 0; i <= 5; i++) {
+                    const y = height - padding - i * yStep;
+                    const value = Math.round(i * maxValue / 5);
+                    ctx.fillText(value.toString(), padding - 10, y + 5);
+                }
+                
+                // Draw datasets
+                data.datasets.forEach((dataset, datasetIndex) => {
+                    ctx.beginPath();
+                    
+                    const maxDataValue = Math.max(...dataset.data);
+                    
+                    dataset.data.forEach((value, i) => {
+                        const x = padding + i * xStep;
+                        const y = height - padding - (value / maxValue) * (height - 2 * padding);
+                        
+                        if (i === 0) {
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+                    });
+                    
+                    ctx.strokeStyle = dataset.color;
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                    
+                    // Draw points
+                    dataset.data.forEach((value, i) => {
+                        const x = padding + i * xStep;
+                        const y = height - padding - (value / maxValue) * (height - 2 * padding);
+                        
+                        ctx.beginPath();
+                        ctx.arc(x, y, 5, 0, Math.PI * 2);
+                        ctx.fillStyle = dataset.color;
+                        ctx.fill();
+                    });
+                });
+                
+                // Draw legend
+                const legendX = width - padding - 150;
+                const legendY = padding + 20;
+                
+                data.datasets.forEach((dataset, i) => {
+                    const y = legendY + i * 25;
+                    
+                    // Draw color box
+                    ctx.fillStyle = dataset.color;
+                    ctx.fillRect(legendX, y - 8, 15, 15);
+                    
+                    // Draw label
+                    ctx.fillStyle = '#333';
+                    ctx.textAlign = 'left';
+                    ctx.fillText(dataset.label, legendX + 25, y);
+                });
+            }
+            
+            drawChart();
+            
+            // Redraw chart on window resize
+            window.addEventListener('resize', () => {
+                canvas.width = canvas.parentElement.offsetWidth;
+                drawChart();
+            });
+        });
+    </script>
+</body>
+</html>

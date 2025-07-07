@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Ventures & Investments | Sam Altman</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .hero {
+            background: linear-gradient(to right, #2563eb, #3b82f6);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--dark);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .investment-card {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .investment-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .investment-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .investment-details h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            height: 250px;
+            margin-top: 1rem;
+        }
+        
+        .bar-item {
+            flex: 1;
+            margin: 0 5px;
+            background-color: var(--primary);
+            transition: height 1s ease-in-out;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .bar-item:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .bar-label {
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 5px 0;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .bar-item:hover .bar-value {
+            opacity: 1;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Sam Altman</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="early-life.html">Early Life & Education</a></li>
+                    <li><a href="y-combinator.html">Y Combinator Era</a></li>
+                    <li><a href="openai.html">OpenAI Leadership</a></li>
+                    <li><a href="ventures.html" class="active">Other Ventures & Investments</a></li>
+                    <li><a href="impact.html">Impact & Vision</a></li>
+                    <li><a href="achievements.html">Achievements & Awards</a></li>
+                    <li><a href="contact.html">Contact/Links</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Other Ventures & Investments</h1>
+            <p>Exploring Sam Altman's diverse portfolio of investments and entrepreneurial projects beyond OpenAI</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Investment Portfolio</h2>
+            <p>Sam Altman has invested in over 400 companies with a portfolio valued at approximately $2.8 billion as of June 2024. His investments span multiple sectors including AI, energy, healthcare/biotech, finance, technology, and cybersecurity.</p>
+            
+            <div class="chart-container">
+                <h3>Investment by Sector</h3>
+                <div class="chart-bar">
+                    <div class="bar-item" style="height: 80%;">
+                        <span class="bar-value">35%</span>
+                        <div class="bar-label">AI</div>
+                    </div>
+                    <div class="bar-item" style="height: 60%;">
+                        <span class="bar-value">25%</span>
+                        <div class="bar-label">Energy</div>
+                    </div>
+                    <div class="bar-item" style="height: 45%;">
+                        <span class="bar-value">18%</span>
+                        <div class="bar-label">Healthcare</div>
+                    </div>
+                    <div class="bar-item" style="height: 35%;">
+                        <span class="bar-value">15%</span>
+                        <div class="bar-label">Finance</div>
+                    </div>
+                    <div class="bar-item" style="height: 25%;">
+                        <span class="bar-value">7%</span>
+                        <div class="bar-label">Other</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Noteworthy Investments</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Initial Investment</th>
+                        <th>Estimated Value</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stripe</td>
+                        <td>$15,000</td>
+                        <td>$130 million</td>
+                        <td>2009</td>
+                    </tr>
+                    <tr>
+                        <td>Airbnb</td>
+                        <td>Undisclosed</td>
+                        <td>Undisclosed</td>
+                        <td>Early stage</td>
+                    </tr>
+                    <tr>
+                        <td>Reddit</td>
+                        <td>Undisclosed</td>
+                        <td>7.5% ownership</td>
+                        <td>Undisclosed</td>
+                    </tr>
+                    <tr>
+                        <td>Retro Biosciences</td>
+                        <td>$180 million</td>
+                        <td>Undisclosed</td>
+                        <td>Undisclosed</td>
+                    </tr>
+                    <tr>
+                        <td>Helion Energy</td>
+                        <td>$375 million</td>
+                        <td>Undisclosed</td>
+                        <td>Undisclosed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Key Projects and Roles</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Helion Energy</h3>
+                    <p>Sam serves as the Chairman of the board at Helion Energy, where he invested $375 million. The company is focused on developing fusion energy technology.</p>
+                    <p><strong>Role:</strong> Chairman of the Board</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Oklo Inc.</h3>
+                    <p>Sam served as Chairman of the board until April 2025. Oklo is developing advanced fission power solutions to provide clean, reliable energy.</p>
+                    <p><strong>Role:</strong> Former Chairman of the Board</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Worldcoin</h3>
+                    <p>Co-founded Tools For Humanity, the company behind Worldcoin, which aims to create a human verification system using eye-scanning Orbs.</p>
+                    <p><strong>Role:</strong> Co-founder</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Loopt</h3>
+                    <p>Founded this mobile social networking service in 2005, which allowed users to share their location with friends.</p>
+                    <p><strong>Role:</strong> Founder</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Apollo Projects</h3>
+                    <p>Founded Apollo Projects to invest in breakthrough technology companies with ambitious missions.</p>
+                    <p><strong>Role:</strong> Founder</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Project Covalence</h3>
+                    <p>Helped fund and create this project during the COVID-19 pandemic to assist researchers with clinical trials.</p>
+                    <p><strong>Role:</strong> Funder and Creator</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Investment Focus Areas</h2>
+            <p>Sam Altman has shown particular interest in several key technology areas that he believes will shape the future:</p>
+            
+            <div class="card-grid">
+                <div class="investment-card">
+                    <div class="investment-icon">AI</div>
+                    <div class="investment-details">
+                        <h4>AI Hardware</h4>
+                        <p>Investing in companies developing specialized chips and hardware for AI applications</p>
+                    </div>
+                </div>
+                
+                <div class="investment-card">
+                    <div class="investment-icon">☁️</div>
+                    <div class="investment-details">
+                        <h4>Cloud Computing</h4>
+                        <p>Supporting next-generation cloud infrastructure and services</p>
+                    </div>
+                </div>
+                
+                <div class="investment-card">
+                    <div class="investment-icon">⚛️</div>
+                    <div class="investment-details">
+                        <h4>Nuclear Fusion</h4>
+                        <p>Backing companies working on clean, sustainable fusion energy</p>
+                    </div>
+                </div>
+                
+                <div class="investment-card">
+                    <div class="investment-icon">🧬</div>
+                    <div class="investment-details">
+                        <h4>Longevity Research</h4>
+                        <p>Investing in biotechnology focused on extending human lifespan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn" id="portfolioBtn">View Full Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sam Altman</p>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("active");
+        });
+        
+        document.querySelectorAll(".nav-links li").forEach(n => 
+            n.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navLinks.classList.remove("active");
+            })
+        );
+        
+        // Animate chart bars on load
+        document.addEventListener("DOMContentLoaded", function() {
+            const bars = document.querySelectorAll('.bar-item');
+            bars.forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, 300);
+            });
+        });
+        
+        // Portfolio button click event
+        document.getElementById('portfolioBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Full portfolio details coming soon!');
+        });
+    </script>
+</body>
+</html>
